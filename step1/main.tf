@@ -5,7 +5,7 @@ provider "aws" {
 resource "aws_vpc" "devops_vpc" {
     cidr_block = "10.100.0.0/16"
     tags = {
-          Name = "${var.instance_tag}-vpc"
+          Name = "${var.resource_tag}-vpc"
     }
 }
 
@@ -14,7 +14,7 @@ resource "aws_subnet" "devops_vpc_pub_subnet_01" {
     availability_zone = "ap-northeast-1a"
     vpc_id            = "${aws_vpc.devops_vpc.id}"
     tags = {
-          Name = "${var.instance_tag}-pub-subnet-01"
+          Name = "${var.resource_tag}-pub-subnet-01"
     }
 }
 
@@ -23,7 +23,7 @@ resource "aws_subnet" "devops_vpc_pub_subnet_02" {
     availability_zone = "ap-northeast-1c"
     vpc_id            = "${aws_vpc.devops_vpc.id}"
     tags = {
-          Name = "${var.instance_tag}-pub-subnet-02"
+          Name = "${var.resource_tag}-pub-subnet-02"
     }
 }
 
@@ -54,7 +54,7 @@ resource "aws_security_group" "instance_sg" {
   description = "controls access to the application server"
 
   vpc_id = "${aws_vpc.devops_vpc.id}"
-  name   = "${var.instance_tag}-sg"
+  name   = "${var.resource_tag}-sg"
 
   ingress {
     protocol    = "tcp"
@@ -94,7 +94,7 @@ resource "aws_instance" "devops_test_server" {
     create_before_destroy = true
   }
   tags = {
-    Name = "${var.instance_tag}-server"
+    Name = "${var.resource_tag}-server"
  }
 
 }
