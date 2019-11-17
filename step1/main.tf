@@ -1,5 +1,5 @@
 provider "aws" {
-    region = "us-west-2"
+    region = "ap-northeast-1"
 }
 
 resource "aws_vpc" "devops_vpc" {
@@ -11,7 +11,7 @@ resource "aws_vpc" "devops_vpc" {
 
 resource "aws_subnet" "devops_vpc_pub_subnet_01" {
     cidr_block        = "10.100.1.0/24"
-    availability_zone = "us-west-2a"
+    availability_zone = "ap-northeast-1a"
     vpc_id            = "${aws_vpc.devops_vpc.id}"
     tags = {
           Name = "${var.instance_tag}-pub-subnet-01"
@@ -20,7 +20,7 @@ resource "aws_subnet" "devops_vpc_pub_subnet_01" {
 
 resource "aws_subnet" "devops_vpc_pub_subnet_02" {
     cidr_block        = "10.100.2.0/24"
-    availability_zone = "us-west-2c"
+    availability_zone = "ap-northeast-1c"
     vpc_id            = "${aws_vpc.devops_vpc.id}"
     tags = {
           Name = "${var.instance_tag}-pub-subnet-02"
@@ -84,7 +84,7 @@ resource "aws_security_group" "instance_sg" {
 resource "aws_instance" "devops_test_server" {
   vpc_security_group_ids = ["${aws_security_group.instance_sg.id}"]
 
-  key_name                    = "devops_test_key"
+  key_name                    = "devops-tokyo-key"
   ami                    = "ami-0a85857bfc5345c38"
   instance_type               = "t2.micro"
   associate_public_ip_address = true
