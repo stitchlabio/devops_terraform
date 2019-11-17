@@ -3,6 +3,6 @@ variable "az_count" {
   default     = "2"
 }
 
-variable "instance_tag" {
-  description = "AWS instance tag Name"
+variable "resource_tag" {
+  description = "AWS resource tag Name"
 }
