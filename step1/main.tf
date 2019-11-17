@@ -85,7 +85,7 @@ resource "aws_instance" "devops_test_server" {
   vpc_security_group_ids = ["${aws_security_group.instance_sg.id}"]
 
   key_name                    = "devops-tokyo-key"
-  ami                    = "ami-0a85857bfc5345c38"
+  ami                    = "ami-0f9af249e7fa6f61b"
   instance_type               = "t2.micro"
   associate_public_ip_address = true
   subnet_id = "${aws_subnet.devops_vpc_pub_subnet_01.id}"
